@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+.navbar {
+    background-color: black !important;
+}
+
+a {
+    color: white !important;
+}
+
+.bi-three-dots {
+    color: white !important;
+}
