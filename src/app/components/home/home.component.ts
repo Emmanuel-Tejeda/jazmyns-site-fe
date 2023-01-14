@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  homeImage: any;
+  homeImage :any = "/assets/pictures/home-picture.jpg"
+  
 
 }
