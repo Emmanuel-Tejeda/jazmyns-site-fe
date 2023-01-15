@@ -12,8 +12,5 @@ export class HttpServiceService {
     return this._http.get(imageUrl, { responseType: 'blob' });
   }
 
-  getImageList(imageUrl: string){
-    return this._http.get(imageUrl);
-  }
   
 }
