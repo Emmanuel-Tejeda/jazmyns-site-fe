@@ -8,10 +8,12 @@ export class HttpServiceService {
 
   constructor(private _http: HttpClient) { }
 
-  imagesUrl: string = "http://localhost:8080/images";
+  getImages(imageUrl: string){
+    return this._http.get(imageUrl, { responseType: 'blob' });
+  }
 
-  getImages(){
-    return this._http.get(this.imagesUrl);
+  getImageList(imageUrl: string){
+    return this._http.get(imageUrl);
   }
   
 }
