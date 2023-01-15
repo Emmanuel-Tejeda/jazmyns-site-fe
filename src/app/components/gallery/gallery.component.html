@@ -1,8 +1,9 @@
-<!-- <input type="URL" name="myURL" [(ngModel)]="myURL" placeholder="insert image URL here" (change)="onURLinserted() "> -->
+<div class="container">
+    <div class="row">
+            <div *ngFor="let image of imageToShow" class="col-md-4 p-3 text-center">
+                <img class="img-fluid" [src]="image" alt="Place image title">
+            </div>
+    </div>
 
-
-<div *ngFor="let image of imageToShow">
-    
-    <img class="img-fluid" [src]="image" alt="Place image title">
 
 </div>
