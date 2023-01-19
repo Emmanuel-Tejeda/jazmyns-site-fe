@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IImage } from './image';
 
 
 @Component({
@@ -10,9 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class GalleryComponent implements OnInit{
 
-  imageUrl: string = 'http://localhost:8080/files/76319f2e-f51c-4202-9f18-94725da44192';
-  imagesUrl: string = 'http://localhost:8080/files';
-  imageToShow: any[] = [];
+  imagesUrl: string = 'http://localhost:8080/file';
+  imageToShow: IImage[] = [];
   listOfUrls: any = '';
 
 
@@ -26,20 +26,28 @@ export class GalleryComponent implements OnInit{
 
     onURLinserted(url: string) {
       this.getImage(url).subscribe(data => {
-        this.createImageFromBlob(data);
+
+        this.createImageFromBlob(data, url);
       }, error => {
         console.log("Error occured",error);
       });
+      
   }
 
   getImage(imageUrl: string): Observable<Blob> {
     return this.http.get(imageUrl, { responseType: 'blob' });
   }
 
-  createImageFromBlob(image: Blob) {
+  createImageFromBlob(image: Blob, imageUrl: string) {
   let reader = new FileReader(); //you need file reader for read blob data to base64 image data.
   reader.addEventListener("load", () => {
-      this.imageToShow.push(reader.result); // here is the result you got from reader
+
+      let newImage: IImage = {
+        image: reader.result,
+        url: imageUrl
+        
+      };
+      this.imageToShow.push(newImage); // here is the result you got from reader
   }, false);
 
   if (image) {
@@ -59,11 +67,22 @@ export class GalleryComponent implements OnInit{
 
     for (let index = 0; index < length; index++) {
 
-      this.onURLinserted(this.listOfUrls[index].url);
+      this.onURLinserted(this.listOfUrls[index]?.url);
       
     }
     
     console.log(this.imageToShow);
+    
+  }
+
+  deleteImage(imageUrl: string){
+
+    
+    this.http.delete(`http://localhost:8080/file/${imageUrl}`)
+        .subscribe((status) => { 
+         console.log(status);
+      });
+      
   }
 
 

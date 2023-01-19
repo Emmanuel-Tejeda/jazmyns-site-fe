@@ -1,8 +1,11 @@
 <div class="container">
     <div class="row">
             <div *ngFor="let image of imageToShow" class="col-md-4 p-3 text-center">
-                <img class="img-fluid" [src]="image" alt="Place image title">
+                <img class="img-fluid" [src]="image.image" alt="Place image title">
+
+                <button (click)="deleteImage(image.url)" >Delete</button>
             </div>
+            
     </div>
 
 
