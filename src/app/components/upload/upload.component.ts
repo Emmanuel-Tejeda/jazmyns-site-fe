@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UploadComponent implements OnInit {
 
-  SERVER_URL = "http://localhost:8080/upload";
+  SERVER_URL = "http://localhost:8080/jazmyn/upload";
 
   uploadForm!: FormGroup;  
 

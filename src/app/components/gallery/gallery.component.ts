@@ -11,7 +11,7 @@ import { IImage } from './image';
 })
 export class GalleryComponent implements OnInit{
 
-  imagesUrl: string = 'http://localhost:8080/file';
+  imagesUrl: string = 'http://localhost:8080/jazmyn/file';
   imageToShow: IImage[] = [];
   listOfUrls: any = '';
 
@@ -77,8 +77,10 @@ export class GalleryComponent implements OnInit{
 
   deleteImage(imageUrl: string){
 
+    console.log(imageUrl);
+
     
-    this.http.delete(`http://localhost:8080/file/${imageUrl}`)
+    this.http.delete(imageUrl)
         .subscribe((status) => { 
          console.log(status);
       });
