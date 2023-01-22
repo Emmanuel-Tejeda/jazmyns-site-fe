@@ -8,6 +8,9 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UploadComponent } from './components/upload/upload.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BoardAdminComponent } from './components/board-admin/board-admin.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +18,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     GalleryComponent,
     UploadComponent,
+    BoardAdminComponent,
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
