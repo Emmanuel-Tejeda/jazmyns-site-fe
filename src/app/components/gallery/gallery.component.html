@@ -1,11 +1,16 @@
 <div class="container">
-    <div class="row">
-            <div *ngFor="let image of imageToShow" class="col-md-4 p-3 text-center">
-                <img class="img-fluid" [src]="image.image" alt="Place image title">
 
-                <button (click)="deleteImage(image.url)" >Delete</button>
+
+    <h2 class="display-5 text-center">Portfolio</h2>
+
+    <hr class="my-3">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-6 p-3 m-0" *ngFor="let file of listOfFiles" style="justify-content: center; display: flex;">
+                <img class="img-fluid" src="{{file.url}}" alt="">
             </div>
-            
+        </div>
     </div>
 
 

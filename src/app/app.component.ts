@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './shared/auth.service';
 import { StorageService } from './services/storage.service';
 
 @Component({
@@ -9,40 +9,18 @@ import { StorageService } from './services/storage.service';
 })
 export class AppComponent {
 
-  private roles: string[] = [];
-  isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
-  username?: string;
+  isLoggedIn: string | null = null;
 
-  constructor(private storageService: StorageService, private authService: AuthService) { }
+
+  constructor(private storageService: StorageService, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.storageService.isLoggedIn();
-
-    if (this.isLoggedIn) {
-      const user = this.storageService.getUser();
-      this.roles = user.roles;
-
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-
-      this.username = user.username;
-    }
+    
+    this.isLoggedIn = localStorage.getItem('token');
   }
 
   logout(): void {
-    this.authService.logout().subscribe({
-      next: res => {
-        console.log(res);
-        this.storageService.clean();
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
-    
-    window.location.reload();
+    this.auth.logout();
   }
 
 }

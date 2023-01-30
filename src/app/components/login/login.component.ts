@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
-import { StorageService } from 'src/app/services/storage.service';
+import { Component } from '@angular/core';
+import { AuthService } from 'src/app/shared/auth.service';
 
 
 @Component({
@@ -8,45 +7,35 @@ import { StorageService } from 'src/app/services/storage.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-  form: any = {
-    username: null,
-    password: null
-  };
-  isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = '';
-  roles: string[] = [];
+export class LoginComponent {
 
-  constructor(private authService: AuthService, private storageService: StorageService) { }
+  email: string = '';
+  password: string = '';
+
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
-    if (this.storageService.isLoggedIn()) {
-      this.isLoggedIn = true;
-      this.roles = this.storageService.getUser().roles;
+
+
+  }
+
+  login(){
+
+    if(this.email == ''){
+      alert("Please enter all the email");
+      return;
     }
+
+    if(this.password == ''){
+      alert("Please enter all the password");
+      return;
+    }
+
+    this.auth.login(this.email, this.password);
+    this.email = '';
+    this.password = '';
+
+
   }
 
-  onSubmit(): void {
-    const { username, password } = this.form;
-
-    this.authService.login(username, password).subscribe({
-      next: data => {
-        this.storageService.saveUser(data);
-
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.storageService.getUser().roles;
-        this.reloadPage();
-      },
-      error: err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-      }
-    });
-  }
-
-  reloadPage(): void {
-    window.location.reload();
-  }
 }

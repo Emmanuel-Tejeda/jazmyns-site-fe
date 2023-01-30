@@ -1,0 +1,21 @@
+{
+  "targets": {
+    "jazmyn-firebase": {
+      "hosting": {
+        "jazmyns-site-fe": [
+          "jazmyn-firebase"
+        ]
+      }
+    },
+    "jazmyn-management": {
+      "hosting": {
+        "jazmyns-site-fe": [
+          "jazmyn-management"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "jazmyn-management"
+  }
+}

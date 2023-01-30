@@ -1,11 +1,77 @@
-<h1>Angular 15 FormData (multipart/data-form) Example</h1>
-<div>
-    <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">      
-      <div>
-        <input type="file" name="file" (change)="onFileSelect($event)" />
+<h2 class="display-5 text-center">Upload Images</h2>
+
+<div class="container-fluid">
+
+  <button class="btn btn-outline-primary mb-2 me-2" (click)="openFullscreen(content)">Fullscreen modal</button>
+
+  
+  <div class="row">
+      <!-- show form -->
+      <div class="col-md-4 mt-5">
+        <div class="card border-0 shadow">
+          <div class="card-body">
+              <div>
+                  <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)">
+                  <button type="button" class="btn btn-outline-warning" [disabled] = !selectedFiles (click)="uploadFile()">Upload</button>
+              </div>
+  
+              <div class="progress mt-2">
+                  <div class="progress-bar progress-bar-info"
+                      role="progressbar" attr.aria-valuenow = "{{percentage}}"
+                      aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width: percentage + '%'}">
+                      {{percentage}}%
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="card border-0 shadow mt-3">
+          <div class="card-body">
+            Upload home banner image
+              <div class="mt-3">
+                  <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)">
+                  <button type="button" class="btn btn-outline-warning" [disabled] = !selectedFiles (click)="uploadHomeImage()">Upload</button>
+              </div>
+  
+              <div class="progress mt-2">
+                  <div class="progress-bar progress-bar-info"
+                      role="progressbar" attr.aria-valuenow = "{{percentage}}"
+                      aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width: percentage + '%'}">
+                      {{percentage}}%
+                  </div>
+              </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <button type="submit">Upload</button>
+      <!-- Display all Files -->
+      <div class="col-md-8">
+
+          <div class="mb-3 mt-3">
+              <h4 class="text-primary"> File List</h4>
+          </div>
+
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">File Name</th>
+                  <th scope="col">File Size</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let file of listOfFiles">
+                  <th>{{file.name}}</th>
+                  <td>{{file.size}}</td>
+                  <td>
+                      <a href="{{file.url}}" class="btn btn-outline-info text-dark" type="button" download>Download</a>
+                      <a class="btn btn-outline-danger ms-2 text-dark" type="button" (click)="deleteFiles(file)">Delete</a>
+                  </td>
+                  <td>
+                      <img class="img-fluid" src="{{file.url}}" alt="" style="height: 150px; width: 150px;">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
       </div>
-    </form>
+  </div>
 </div>

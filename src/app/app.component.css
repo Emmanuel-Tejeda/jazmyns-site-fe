@@ -1,0 +1,18 @@
+@import url('https://fonts.cdnfonts.com/css/chic');
+
+.navbar-brand {
+    transform: translateX(-50%);
+    left: 50%;
+    position: absolute;
+    padding-top: 10px;
+  }
+
+  a.navbar-brand{
+
+    text-transform: uppercase !important;
+
+  }
+
+  a{
+    
+  }

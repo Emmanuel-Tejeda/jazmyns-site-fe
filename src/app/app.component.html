@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary navbar-fixed-top bg-dark py-3">
+<nav class="navbar navbar-expand-lg bg-body-tertiary navbar-fixed-top bg-dark py-0">
   <div class="container-fluid mb-3">
-    <a class="navbar-brand" href="#">Jazmyn Millan</a>
+    <a class="navbar-brand mt-3"  href="#" style="font-family:didot; font-size: 20px;">JAZMYN MILAN</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
       <a><i class="bi bi-three-dots" style="font-size:40px"></i></a>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/home">Home</a>
         </li>
@@ -13,53 +13,76 @@
           <a class="nav-link" href="/gallery">Gallery</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/upload">Upload</a>
+          <a class="nav-link" href="/upload" *ngIf="isLoggedIn">Upload</a>
         </li>
         <li class="nav-item" *ngIf="!isLoggedIn">
           <a href="/login" class="nav-link" routerLink="login">Login</a>
         </li>
+        
+      </ul>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="bi bi-facebook me-2"></i>Facebook</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="bi bi-instagram me-2"></i>Instagram</a>
+        </li>
+
       </ul>
 
       <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
         <li class="nav-item">
-          <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
-        </li>
-        <li class="nav-item">
-          <a href class="nav-link" (click)="logout()">LogOut</a>
+          <a href="/login" class="nav-link" (click)="logout()">Log out</a>
         </li>
       </ul>
 
-      <ul class="navbar-nav mr-auto" routerLinkActive="active">
-        <li class="nav-item" *ngIf="showAdminBoard">
-          <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
-        </li>
-        <li class="nav-item" *ngIf="showModeratorBoard">
-          <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
-        </li>
-        <li class="nav-item">
-          <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
-        </li>
-      </ul>
       
     </div>
   </div>
 </nav>
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+<div class="offcanvas offcanvas-end" style="opacity: 0.9;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
   <div class="offcanvas-header bg-dark">
     <h5 class="offcanvas-title" id="offcanvasExampleLabel" style="color: white;">JM</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body bg-dark">
-      <ul>
-        <li><a class="nav-link active" href="#">Home</a></li>
-        <li><a class="nav-link" href="/gallery">Gallery</a></li>
-        <li><a class="nav-link" href="#">Log In</a></li>
-        <li><a class="nav-link" href="#">Twitter</a></li>
-        <li><a class="nav-link" href="#">Facebook</a></li>
-        <li><a class="nav-link" href="#">Instagram</a></li>
 
-      </ul>
+        <div class="row">
+          <div class="col-sm-6 my-3">
+            <a class="nav-link active" href="/home">Home</a>
+          </div>
+
+          <div class="col-sm-6 my-3">
+            <a class="nav-link" href="/gallery">Gallery</a>
+          </div>
+
+          <div class="col-sm-6 my-3">
+            <a href="/login" class="nav-link" routerLink="login" *ngIf="!isLoggedIn">Login</a>
+          </div>
+
+          <div class="col-sm-6 my-3">
+            <a href class="nav-link" (click)="logout()" *ngIf="isLoggedIn">Log out</a>
+          </div>
+          
+          <div class="col-sm-6 my-3">
+            <a class="nav-link" href="/upload">Upload</a>
+          </div>
+
+        </div>
+
+        <div class="row">
+          
+          <div class="col-sm-6 my-3">
+            <a class="nav-link" href="https://www.instagram.com/jazmynmilan/?hl=en"><i class="bi bi-facebook me-2"></i>Facebook</a>
+          </div>
+
+          <div class="col-sm-6 my-3">
+            <a class="nav-link" href="https://m.facebook.com/mynmyn.milan/"><i class="bi bi-instagram me-2"></i>Instagram</a>
+          </div>
+        </div>
+
   </div>
 </div>
 <router-outlet></router-outlet>

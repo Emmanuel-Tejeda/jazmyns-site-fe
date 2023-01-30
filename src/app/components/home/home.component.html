@@ -1,3 +1,22 @@
 <div class="container-fluid">
     <img [src]="homeImage" alt="Home Image">
+
+    <h2 class="display-4 text-center my-3">Recent Work</h2>
+
+    <hr class="mb-4">
+
+    <div class="row">
+        <div *ngFor="let _ of listOfFiles?.constructor(listOfFiles.length); let i = index" class="col-md-6 col-6 p-3 text-center">
+            <img class="img-fluid" [src]="listOfFiles[i]?.url" alt="Place image title">
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    <h2 class="display-4 text-center">Contact</h2>
+
+
+
+
+
 </div>
