@@ -2,3 +2,7 @@ img {
     margin: auto !important;    
     display: block !important;
 }
+
+#add-to-gallery:hover {
+    color: #FFF !important;
+ }

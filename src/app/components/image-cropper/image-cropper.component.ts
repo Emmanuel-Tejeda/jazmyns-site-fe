@@ -9,12 +9,11 @@ import Cropper from 'cropperjs';
 })
 export class ImageCropperComponent {
 
-  uploadedImage: string = '';
-
   @ViewChild("image", { static: false })
-  public imageElement: ElementRef;
+    public imageElement: ElementRef;
 
-  public imageSource: string = '/assets/home-picture.jpg';
+  @Input("src")
+  public imageSource: string;
 
   public imageDestination: string;
   private cropper: Cropper;
@@ -23,24 +22,21 @@ export class ImageCropperComponent {
       this.imageDestination = "";
   }
 
-  public ngAfterViewInit() {
-      this.cropper = new Cropper(this.imageElement.nativeElement, {
-          zoomable: false,
-          scalable: false,
-          aspectRatio: 1,
-          crop: () => {
-              const canvas = this.cropper.getCroppedCanvas();
-              this.imageDestination = canvas.toDataURL("image/png");
-          }
-      });
-  }
+    public ngAfterViewInit() {
 
-  uploadImage(){
-    console.log(this.imageDestination);
-    this.uploadedImage = this.imageDestination;
-    
-  }
+      const cors = require('cors')({origin: true});
+      
+        this.cropper = new Cropper(this.imageElement.nativeElement, {
+            zoomable: false,
+            scalable: false,
+            aspectRatio: 1,
+            crop: () => {
+                const canvas = this.cropper.getCroppedCanvas();
+                this.imageDestination = canvas.toDataURL("image/png");
+            }
+        });
+    }
 
-  public ngOnInit() { }
+    public ngOnInit() { }
 
 }

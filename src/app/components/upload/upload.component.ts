@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { finalize } from 'rxjs';
 import { FileMetaData } from 'src/app/model/file-meta-data';
 import { FileService } from 'src/app/shared/file.service';
@@ -10,6 +11,10 @@ import { FileService } from 'src/app/shared/file.service';
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent implements OnInit {
+
+  
+
+  image:string = "assets/pictures/home-picture.jpg";
 
   selectedFiles!: FileList;
   currentFileUpload!: FileMetaData;

@@ -1,8 +1,4 @@
 <div class="img-container">
-    <img #image src="/assets/pictures/home-picture.jpg" crossorigin>
+    <img #image [src]="imageSource" crossorigin>
 </div>
 <img [src]="imageDestination" class="img-preview">
-
-<button class="btn btn-outline-success" (click)="uploadImage()">Submit</button>
-
-<img src="{{uploadedImage}}" alt="" class="img-fluid mt-3">
